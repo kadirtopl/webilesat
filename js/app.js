@@ -111,26 +111,6 @@ $$('.sound-btn').forEach((b) => {
 const tio = new IntersectionObserver((es) => es.forEach((e) => { if (!e.isIntersecting && !e.target.paused) { e.target.pause(); const b = e.target.parentElement.querySelector('.sound-btn'); if (b) b.innerHTML = '▶ Sesli izle'; } }), { threshold: 0 });
 $$('video[data-tap]').forEach((v) => tio.observe(v));
 
-// ---------- 3D: hero hemen, demo görünür olunca ----------
-const html = document.documentElement;
-const noGL = () => html.classList.add('no-gl');
-const no3d = () => {
-  $('#demo')?.classList.add('no3d');
-  const d = $('.demo-load'); if (d) d.textContent = 'Bu cihaz 3D göstermiyor. Örnekleri WhatsApp\'tan video olarak gönderelim.';
-};
-const canGL = (() => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch (e) { return false; } })();
-if (canGL) {
-  // 3D 6 sn içinde gelmezse (yavaş ağ / CDN) yedek görsel gösterilir
-  const t = setTimeout(() => { if (!html.classList.contains('gl-ok')) noGL(); }, 6000);
-  import('./hero3d.js?v=3').then((m) => { if (!m.startHero()) noGL(); else clearTimeout(t); }).catch((e) => { console.warn('3D başlamadı', e); noGL(); });
-  const demo = $('#demo');
-  if (demo) {
-    const dio = new IntersectionObserver((es) => {
-      if (es[0].isIntersecting) { dio.disconnect(); import('./demo3d.js?v=3').then((m) => { if (m.startDemo(demo) === false) no3d(); }).catch((e) => { console.warn(e); no3d(); }); }
-    }, { rootMargin: '400px 0px' });
-    dio.observe(demo);
-  }
-} else { noGL(); no3d(); }
 
 // ---------- indirim çarkı ----------
 (function wheel() {
@@ -140,25 +120,25 @@ if (canGL) {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const S = 1000, ctx = cv.getContext('2d'); cv.width = cv.height = S;
   let ang = 0;
-  const colors = [['#13233d', '#1c3358'], ['#f2b544', '#ffd884']];
+  const colors = [['#13315c', '#0b2545'], ['#ffffff', '#eef2f8']];
   function draw() {
     ctx.clearRect(0, 0, S, S);
     ctx.save(); ctx.translate(S / 2, S / 2);
     ctx.beginPath(); ctx.arc(0, 0, 492, 0, Math.PI * 2);
-    const rg = ctx.createLinearGradient(-500, -500, 500, 500); rg.addColorStop(0, '#ffe3a1'); rg.addColorStop(.5, '#b47a1c'); rg.addColorStop(1, '#ffd884');
+    const rg = ctx.createLinearGradient(-500, -500, 500, 500); rg.addColorStop(0, '#d6dce6'); rg.addColorStop(.5, '#9aa6b8'); rg.addColorStop(1, '#d6dce6');
     ctx.fillStyle = rg; ctx.fill();
-    ctx.beginPath(); ctx.arc(0, 0, 462, 0, Math.PI * 2); ctx.fillStyle = '#0a1424'; ctx.fill();
+    ctx.beginPath(); ctx.arc(0, 0, 462, 0, Math.PI * 2); ctx.fillStyle = '#0b2545'; ctx.fill();
     for (let i = 0; i < n; i++) {
       const a0 = -Math.PI / 2 - seg / 2 + i * seg + ang;
       ctx.beginPath(); ctx.moveTo(0, 0); ctx.arc(0, 0, 452, a0, a0 + seg); ctx.closePath();
       const c = colors[i % 2], g = ctx.createRadialGradient(0, 0, 60, 0, 0, 452); g.addColorStop(0, c[0]); g.addColorStop(1, c[1]);
       ctx.fillStyle = g; ctx.fill();
-      ctx.strokeStyle = 'rgba(255,255,255,.18)'; ctx.lineWidth = 3; ctx.stroke();
+      ctx.strokeStyle = 'rgba(11,37,69,.18)'; ctx.lineWidth = 3; ctx.stroke();
       // yazı: sol yarıda ters durmasın diye 180° çevrilir
       const mid = a0 + seg / 2, left = Math.cos(mid) < 0;
       ctx.save(); ctx.rotate(mid); if (left) ctx.rotate(Math.PI);
       ctx.textAlign = left ? 'left' : 'right'; ctx.textBaseline = 'middle';
-      ctx.fillStyle = i % 2 ? '#241703' : '#ffe3a1';
+      ctx.fillStyle = i % 2 ? '#0b2545' : '#ffffff';
       ctx.font = '800 44px "Plus Jakarta Sans", system-ui, sans-serif';
       ctx.fillText(P[i].kisa, left ? -375 : 375, 0);
       ctx.restore();
@@ -167,7 +147,7 @@ if (canGL) {
     for (let i = 0; i < 24; i++) {
       const a = i / 24 * Math.PI * 2, on = (tick + i) % 2;
       ctx.beginPath(); ctx.arc(Math.cos(a) * 477, Math.sin(a) * 477, 8, 0, Math.PI * 2);
-      ctx.fillStyle = on ? '#fff6d8' : '#8a5f17'; ctx.fill();
+      ctx.fillStyle = on ? '#ffffff' : '#5b6b84'; ctx.fill();
     }
     ctx.restore();
   }
