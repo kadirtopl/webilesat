@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://webilesat.com.tr/sitemap.xml
