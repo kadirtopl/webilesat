@@ -1,4 +1,4 @@
-import { AYAR, waLink } from './config.js?v=6';
+import { AYAR, waLink } from './config.js?v=7';
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -32,7 +32,8 @@ if (AYAR.metaPixel) {
 const MSG = {
   genel: 'Merhaba Web ile Sat 👋 Web sitesi hakkında bilgi almak istiyorum.',
   teklif: 'Merhaba Web ile Sat 👋 İşletmem için web sitesi teklifi almak istiyorum.\nSektörüm: \nŞehrim: ',
-  hediye: 'Merhaba 👋 Web sitesi + hediye reklam videosu (Vitrin + Reklam paketi) hakkında bilgi almak istiyorum.',
+  hediye: 'Merhaba 👋 Profesyonel web sitesi paketi (tanıtım videosu hediye) hakkında bilgi almak istiyorum.',
+  video: 'Merhaba Web ile Sat 👋 60 saniyelik tanıtım videosu (2.000 ₺) yaptırmak istiyorum.\nİşim: \nŞehrim: ',
   demo: 'Merhaba 👋 Sitenizdeki 3D modeli gördüm. İşletmem için 3D modelli bir site istiyorum.',
   ornek: 'Merhaba 👋 Örnek işlerinizi gördüm, benzer bir site istiyorum.',
 };
