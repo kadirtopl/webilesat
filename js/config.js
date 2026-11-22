@@ -4,8 +4,8 @@
 // ============================================================
 export const AYAR = {
   // WhatsApp sipariş numarası (ülke kodu ile, boşluksuz)
-  whatsapp: '905353770663',
-  telefonGorunen: '0535 377 06 63',
+  whatsapp: '902622555441',
+  telefonGorunen: '0262 255 54 41',
   instagram: 'webilesat',
   eposta: '',               // istenirse: 'bilgi@webilesat.com.tr'
   sehir: 'Kocaeli',

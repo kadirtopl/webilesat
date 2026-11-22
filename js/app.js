@@ -1,4 +1,4 @@
-import { AYAR, waLink } from './config.js';
+import { AYAR, waLink } from './config.js?v=6';
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
