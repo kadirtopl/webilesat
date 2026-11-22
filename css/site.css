@@ -505,3 +505,9 @@ footer .brand b { color: #e8c27a; }
   .phone-frame.dm { max-width: none; border-radius: 40px; }
   .phone-frame.dm .scr { border-radius: 37px; border-width: 6px; }
 }
+
+/* PDF bağlantıları */
+.pdf-link { display: inline-flex; align-items: center; gap: 6px; margin: 0 0 12px; font-size: 14px; font-weight: 700; color: var(--blue); }
+.pdf-link:hover { text-decoration: underline; }
+.pdf-link.light { color: #e8b956; margin: 0; }
+.plans .plan .pdf-link { align-self: flex-start; }
